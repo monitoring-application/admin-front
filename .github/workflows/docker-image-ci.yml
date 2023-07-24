@@ -31,16 +31,16 @@ jobs:
           context: .
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/rl-signup-front:latest
-          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/rl-signup-front:buildcache
-          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/responsive-landing-page:buildcache,mode=max
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/rl-admin-front:latest
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/rl-admin-front:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/rl-admin-front:buildcache,mode=max
 
   deploy:
     needs: docker
     runs-on: ubuntu-latest
     steps:
       -
-        name: Deploy RL-SIGNUP
+        name: Deploy RL-ADMIN
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -49,6 +49,6 @@ jobs:
           key: ${{secrets.SSH_KEY}}
           script: |
             cd deployment-scripts/webapp/
-            docker compose pull signup_frontend
-            docker compose up signup_frontend -d
-            docker compose logs --tail 20 signup_frontend
+            docker compose pull admin-frontend
+            docker compose up  admin-frontend -d
+            docker compose logs --tail 20  admin-frontend
