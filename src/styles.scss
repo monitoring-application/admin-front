@@ -1,0 +1,52 @@
+
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+html, body { height: auto; }
+body {
+  margin: 0;
+  font-family: "Poppins", Times, serif !important;
+}
+mat-card {
+  padding: 0px;
+  min-height: unset !important;
+  margin-top: unset !important;
+  height: auto;
+  border-radius: 20px;
+  background-color: rgb(255 255 255 / 30%);
+}
+
+button, table, h4, h5{
+  font-family: "Poppins", Times, serif !important;
+}
+mat-form-field, mat-paginator, mat-option, mat-select {
+  font-family: "Poppins", Times, serif !important;
+}
+.mat-row .mat-cell {
+  cursor: pointer;
+  color: #aaaaaa;
+}
+.mat-row:hover .mat-cell {
+  background-color: #cecece;
+  color: whitesmoke;
+}
+.row-is-clicked {
+  background-color: #868686ab;
+   td.mat-cell {
+    color: whitesmoke;
+  } 
+}
+.loading-shade {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

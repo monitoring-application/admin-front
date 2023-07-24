@@ -1,0 +1,102 @@
+<section class="body">
+  <app-header></app-header>
+  <section class="m-14" *ngIf="!isMobile">
+    <div>
+      <div class="text-6xl font-bold text-color pl-64">Sign up with us!</div>
+      <div class="grid grid-cols-2 gap-4 mt-10">
+        <div>
+          <img class="rose-lin" src="assets/Images/rose-logo.png" />
+        </div>
+        <div>
+          <form action="" [formGroup]="form">
+            <div class="text-color text-lg font-bold">Referal Code</div>
+            <mat-form-field class="w-3/4" appearance="outline">
+              <input matInput formControlName="referal_code" />
+            </mat-form-field>
+            <div class="text-color text-lg font-bold">Mobile Number</div>
+            <mat-form-field class="w-3/4" appearance="outline">
+              <input matInput formControlName="mobile_number" />
+            </mat-form-field>
+            <div class="text-color text-lg font-bold">First Name</div>
+            <mat-form-field class="w-3/4" appearance="outline">
+              <input matInput formControlName="first_name" />
+            </mat-form-field>
+            <div class="text-color text-lg font-bold">Last Name</div>
+            <mat-form-field class="w-3/4" appearance="outline">
+              <input matInput formControlName="last_name" />
+            </mat-form-field>
+            <div class="text-color text-lg font-bold">Email Address</div>
+            <mat-form-field class="w-3/4" appearance="outline">
+              <input
+                matInput
+                formControlName="email"
+                type="email"
+                [email]="true"
+              />
+            </mat-form-field>
+            <div>
+              <button mat-raised-button class="fonts w-36" (click)="submit()">
+                Sign Up
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section *ngIf="isMobile" class="m-5">
+    <div>
+      <p class="text-xl font-bold text-color text-center">Sign up with us!</p>
+      <div>
+        <img class="rose-lin-mobile" src="assets/Images/rose-logo.png" />
+      </div>
+      <div class="col-span-2 mt-5">
+        <form action="" [formGroup]="form">
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <div class="text-color text-sm font-bold">Referal Code</div>
+              <mat-form-field class="w-full" appearance="outline">
+                <input matInput formControlName="referal_code" />
+              </mat-form-field>
+            </div>
+            <div>
+              <div class="text-color text-sm font-bold">Mobile Number</div>
+              <mat-form-field class="w-full" appearance="outline">
+                <input matInput formControlName="mobile_number" />
+              </mat-form-field>
+            </div>
+            <div>
+              <div class="text-color text-sm font-bold">First Name</div>
+              <mat-form-field class="w-full" appearance="outline">
+                <input matInput formControlName="first_name" />
+              </mat-form-field>
+            </div>
+            <div>
+              <div class="text-color text-sm font-bold">Last Name</div>
+              <mat-form-field class="w-full" appearance="outline">
+                <input matInput formControlName="last_name" />
+              </mat-form-field>
+            </div>
+            <div class="col-span-2">
+              <div class="text-color text-sm font-bold">Email Address</div>
+              <mat-form-field class="w-full" appearance="outline">
+                <input
+                  matInput
+                  formControlName="email"
+                  type="email"
+                  [email]="true"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+          <div>
+            <button mat-raised-button class="fonts w-36" (click)="submit()">
+              Sign Up
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  <app-footer></app-footer>
+</section>

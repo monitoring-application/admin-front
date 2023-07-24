@@ -1,0 +1,62 @@
+<section>
+  <app-header></app-header>
+  <div *ngIf="!isMobile">
+    <div class="text-6xl font-bold text-color pl-60 pt-16">
+      Sign up with us!
+    </div>
+    <div class="text-center">
+      <div class="w-full grid grid-cols-2">
+        <div class="ml-28">
+          <img class="rose-lin" src="assets/Images/rose-logo.png" />
+        </div>
+        <div class="text-left">
+          <div class="mt-20 ml-16">
+            <div class="font-extrabold text-4xl">Get ready for a surprise.</div>
+            <div class="mt-20 text-2xl font-bold">Just for you!</div>
+            <div class="mt-8">Input Your Code Here</div>
+            <div class="login-panel-input">
+              <mat-form-field class="w-1/2" appearance="outline">
+                <input matInput />
+              </mat-form-field>
+            </div>
+            <div>
+              <button mat-raised-button class="fonts w-36" (click)="submit()">
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isMobile" class="mb-5">
+    <div class="text-2xl font-bold text-color text-center pt-8">
+      Sign up with us!
+    </div>
+    <div class="text-center">
+      <div class="w-full">
+        <div class="ml-18">
+          <img class="rose-lin" src="assets/Images/rose-logo.png" />
+        </div>
+        <div class="text-center">
+          <div>
+            <div class="font-extrabold text-xl">Get ready for a surprise.</div>
+            <div class="mt-6 text-lg font-bold">Just for you!</div>
+            <div class="mt-3 text-base">Input Your Code Here</div>
+            <div class="login-panel-input">
+              <mat-form-field appearance="outline" class="w-3/4">
+                <input matInput />
+              </mat-form-field>
+            </div>
+            <div>
+              <button mat-raised-button class="fonts w-24" (click)="submit()">
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</section>

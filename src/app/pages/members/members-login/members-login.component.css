@@ -1,0 +1,13 @@
+button.fonts{
+    /* background-color: white; */
+    font-family: "Poppins", Times, serif !important;
+    font-weight: 600;
+    color: #A41608;
+    border: 3px solid #A41608;
+    border-radius: 10px;
+  }
+
+  img.rose-lin {
+    width: 50%;
+    margin-left: 25%;
+  }

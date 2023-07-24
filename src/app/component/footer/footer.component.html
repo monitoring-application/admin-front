@@ -1,0 +1,114 @@
+<section *ngIf="!isMobile" class="bgColor foreColore font-text pb-5">
+  <div>
+    <form
+      action=""
+      [formGroup]="form"
+      class="grid grid-cols-2 gap-4 mt-10 mr-14 ml-14"
+    >
+      <div class="w-full mt-10">
+        <div>
+          <p class="font-bold text-4xl">MESSAGE</p>
+          <p>
+            Feel free to get in touch with us for your inquiries and request.
+          </p>
+        </div>
+        <br />
+        <div>
+          <div class="grid grid-cols-2 gap-2 w-3/4">
+            <div>
+              <p>First Name</p>
+              <mat-form-field class="w-full" appearance="outline">
+                <input matInput formControlName="first_name" />
+              </mat-form-field>
+            </div>
+            <div>
+              <p>Last Name</p>
+              <mat-form-field class="w-full" appearance="outline">
+                <input matInput formControlName="last_name" />
+              </mat-form-field>
+            </div>
+          </div>
+          <p>Email</p>
+          <mat-form-field class="w-3/4" appearance="outline">
+            <input
+              matInput
+              formControlName="email"
+              type="email"
+              [email]="true"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="w-full mt-10">
+        <div>
+          <p>Message</p>
+          <mat-form-field appearance="outline" class="textAreaInput w-3/4">
+            <textarea
+              class="w-full"
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="7"
+              cdkAutosizeMaxRows="11"
+              formControlName="message"
+            ></textarea>
+          </mat-form-field>
+        </div>
+        <button mat-raised-button (click)="submit()" class="fonts w-36">
+          Send
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+<!-- MOBILE PART -->
+<section *ngIf="isMobile" class="bgColor foreColore pt-2 pb-5">
+  <div class="m-5 font-text">
+    <div class="w-full mt-3">
+      <div>
+        <div class="font-bold text-l">Message</div>
+        <div class="text-xxs">
+          Feel free to get in touch with us for your inquiries and request.
+        </div>
+        <br />
+      </div>
+    </div>
+    <form action="" [formGroup]="form">
+      <div>
+        <div class="grid grid-cols-2 gap-2 w-full">
+          <div>
+            <p class="text-xs">First Name</p>
+            <mat-form-field class="w-full" appearance="outline">
+              <input matInput formControlName="first_name" />
+            </mat-form-field>
+          </div>
+          <div>
+            <p class="text-xs">Last Name</p>
+            <mat-form-field class="w-full" appearance="outline">
+              <input matInput formControlName="last_name" />
+            </mat-form-field>
+          </div>
+        </div>
+        <p class="text-xs">Email</p>
+        <mat-form-field class="w-full" appearance="outline">
+          <input matInput formControlName="email" type="email" [email]="true" />
+        </mat-form-field>
+        <div>
+          <p class="text-xs">Message</p>
+          <mat-form-field appearance="outline" class="textAreaInput w-full">
+            <textarea
+              class="w-full"
+              matInput
+              cdkTextareaAutosize
+              cdkAutosizeMinRows="7"
+              cdkAutosizeMaxRows="11"
+              formControlName="message"
+            ></textarea>
+          </mat-form-field>
+        </div>
+        <button mat-raised-button (click)="submit()" class="fonts w-24 text-xs">
+          Send
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

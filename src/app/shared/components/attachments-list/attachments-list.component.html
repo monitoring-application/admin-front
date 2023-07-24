@@ -1,0 +1,19 @@
+<section class="mt-5">
+  <mat-divider></mat-divider>
+  <span class="mx-5"></span>
+  <mat-list>
+    <div mat-subheader>
+      Selected Social Media {{ socialmedias ? socialmedias.length : 0 }}/{{
+        maxSocialmedia
+      }}
+    </div>
+    <mat-list-item *ngFor="let socialmedia of socialmedias">
+      <img mat-list-icon [src]="socialmedia.avatar" />
+      <div mat-line>{{ socialmedia.name }}</div>
+      <div matListItemLine>Screenshot.jpg</div>
+      <button mat-icon-button (click)="remove(socialmedia)">
+        <mat-icon class="text-red-600">close</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-list>
+</section>

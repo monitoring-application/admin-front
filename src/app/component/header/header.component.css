@@ -1,0 +1,10 @@
+.header {
+
+  width: 100%;
+  background-size: contain;
+  background-position: center;
+}
+img.header-icon {
+  width: 100%;
+  height: 700px;
+}

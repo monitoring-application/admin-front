@@ -1,0 +1,19 @@
+<mat-form-field class="w-full" appearance="outline">
+  <mat-label>{{ label }}</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let attached of attachedFiles" [value]="attached.name">
+      {{ attached.name }}
+    </mat-option>
+  </mat-select>
+  <!-- <mtx-select
+    [items]="socialMedias"
+    bindLabel="name"
+    bindValue="id"
+    [selectOnTab]="true"
+    (change)="selectOption($event)"
+  >
+    <ng-template ng-label-tmp let-item="item">
+      {{ item.name }}
+    </ng-template>
+  </mtx-select> -->
+</mat-form-field>
