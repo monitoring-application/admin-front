@@ -17,7 +17,6 @@ import { SignUpService } from 'src/app/services/sign-up.service';
 import { ISignUpModel } from 'src/app/shared/model/interface/i-sign-up-model';
 import { NotificationType } from 'src/app/util/notification_type';
 import { requestRoutes } from 'src/app/util/request_routes';
-import { DownlineDlgComponent } from '../downline/downline-dlg/downline-dlg.component';
 const columns = [
   'membersCode',
   'fullName',
@@ -146,17 +145,7 @@ export class MembersListComponent implements OnInit {
     this.selectedItem = item;
     this.isApproved = item.status;
   }
-  viewDownline(code: string) {
-    const dialogRef = this.dialog.open(DownlineDlgComponent, {
-      hasBackdrop: true,
-      width: '80vw',
-      maxHeight: '90vh',
-      disableClose: true,
-      autoFocus: false,
-    });
 
-    dialogRef.afterClosed().subscribe((result) => result);
-  }
   remove() {
     this.signUpService.remove(this.selectedItem.id)?.subscribe({
       next: (res) => {},
@@ -199,7 +188,6 @@ export class MembersListComponent implements OnInit {
   }
   refresh() {
     this.clear();
-    this.fetchData();
   }
   clear() {
     this.search = '';

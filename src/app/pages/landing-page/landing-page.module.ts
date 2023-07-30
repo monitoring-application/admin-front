@@ -7,6 +7,7 @@ import { MaterialModule } from 'src/angular-material.module';
 import { LandingPageRoutes } from './landing-page.routing';
 import { NgModule } from '@angular/core';
 import { MembersListComponent } from '../members/members-list/members-list.component';
+import { PaymentRequestComponent } from '../payment-request/payment-request.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { MembersListComponent } from '../members/members-list/members-list.compo
     FlexLayoutModule,
     ReactiveFormsModule,
   ],
-  declarations: [MembersListComponent],
+  declarations: [MembersListComponent, PaymentRequestComponent],
 })
 export class AdminLayoutModule {}

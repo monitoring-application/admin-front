@@ -17,5 +17,13 @@ export class MenuService {
       children: [],
       visible: true,
     },
+    {
+      path: '/payment-request',
+      title: 'Payment Request',
+      icon: 'payments',
+      class: '',
+      children: [],
+      visible: true,
+    },
   ];
 }

@@ -3,70 +3,57 @@
   <img *ngIf="isMobile" src="assets/Images/banner/header-banner-mobile.jpg" />
 </div>
 <section *ngIf="!isMobile">
-  <div class="text-center">
-    <div class="text-6xl font-bold text-color pl-60 pt-16">Login</div>
-    <div class="text-center">
-      <div class="w-full grid grid-cols-2 gap-4">
-        <div class="text-right">
-          <img class="rose-lin" src="assets/Images/rose-logo.png" />
+  <div class="w-full grid grid-cols-2 gap-4 pt-12" [formGroup]="formLogin">
+    <div>
+      <div class="text-6xl font-bold text-color text-center ml-64">Login</div>
+      <img class="rose-lin" src="assets/Images/rose-logo.png" />
+    </div>
+    <div class="text-left">
+      <div class="mt-36">
+        <div>Username</div>
+        <div>
+          <mat-form-field class="w-1/2" appearance="outline">
+            <input matInput formControlName="username" />
+            <mat-error>Username is required</mat-error>
+          </mat-form-field>
         </div>
-        <div class="text-left">
-          <div class="mt-20 ml-16">
-            <div class="login-panel-label">Username</div>
-            <div class="login-panel-input">
-              <mat-form-field class="w-1/2" appearance="outline">
-                <input
-                  matInput
-                  [(ngModel)]="username"
-                  [ngModelOptions]="{ standalone: true }"
-                />
-              </mat-form-field>
-            </div>
-            <div class="login-panel-label">Password</div>
-            <div class="login-panel-input">
-              <mat-form-field class="w-1/2" appearance="outline">
-                <input
-                  matInput
-                  [type]="hide ? 'password' : 'text'"
-                  (keydown.enter)="login()"
-                  [(ngModel)]="password"
-                  [ngModelOptions]="{ standalone: true }"
-                  autocomplete="off"
-                />
-                <button
-                  type="button"
-                  mat-icon-button
-                  matSuffix
-                  (click)="hide = !hide"
-                  [attr.aria-label]="'Hide password'"
-                >
-                  <mat-icon>{{
-                    hide ? "visibility_off" : "visibility"
-                  }}</mat-icon>
-                </button>
-              </mat-form-field>
-            </div>
-            <div
-              class="login-panel-input"
-              fxLayout="row"
-              fxLayoutAlign="space-between"
+        <div>Password</div>
+        <div>
+          <mat-form-field class="w-1/2" appearance="outline">
+            <input
+              matInput
+              [type]="hide ? 'password' : 'text'"
+              (keydown.enter)="login()"
+              formControlName="password"
+              autocomplete="off"
+            />
+            <button
+              type="button"
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
             >
-              <div>
-                <mat-label>{{ this.loginError }}</mat-label>
-              </div>
-            </div>
-            <div>
-              <button
-                mat-raised-button
-                class="buttonLogin"
-                (click)="login()"
-                [class.spinner]="isProcessing"
-                [disabled]="isProcessing"
-              >
-                Log In
-              </button>
-            </div>
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+            <mat-error>Password is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <div>
+            <mat-label>{{ this.loginError }}</mat-label>
           </div>
+        </div>
+        <div>
+          <button
+            mat-raised-button
+            class="fonts w-36"
+            (click)="login()"
+            [class.spinner]="isProcessing"
+            [disabled]="isProcessing"
+          >
+            Log In
+          </button>
         </div>
       </div>
     </div>
@@ -184,65 +171,3 @@
     </form>
   </div>
 </section>
-
-<!-- <div
-  class="login-mobile"
-  fxLayout="row"
-  fxLayoutAlign="center center"
-  *ngIf="isMobile"
->
-  <div fxLayout="column" fxFlex="grow" class="login-panel-mobile">
-    <div class="login-mobile-panel-header">Responder Log In</div>
-    <div class="login-panel-label">Username / Email Address</div>
-    <div class="login-panel-input">
-      <mat-form-field class="full-width" appearance="outline">
-        <input
-          matInput
-          [(ngModel)]="username"
-          [ngModelOptions]="{ standalone: true }"
-        />
-      </mat-form-field>
-    </div>
-    <div class="login-panel-label">Password</div>
-    <div class="login-panel-input">
-      <mat-form-field class="full-width" appearance="outline">
-        <input
-          matInput
-          [type]="hide ? 'password' : 'text'"
-          (keydown.enter)="login()"
-          [(ngModel)]="password"
-          [ngModelOptions]="{ standalone: true }"
-          autocomplete="off"
-        />
-        <button
-          type="button"
-          mat-icon-button
-          matSuffix
-          (click)="hide = !hide"
-          [attr.aria-label]="'Hide password'"
-        >
-          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-        </button>
-      </mat-form-field>
-    </div>
-    <div class="login-panel-input" fxLayout="row" fxLayoutAlign="space-between">
-      <div>
-        <mat-checkbox class="example-margin"> Remember me</mat-checkbox>
-      </div>
-      <div>
-        <mat-label>{{ this.loginError }}</mat-label>
-      </div>
-    </div>
-    <div>
-      <button
-        mat-raised-button
-        class="buttonLogin"
-        (click)="login()"
-        [class.spinner]="isProcessing"
-        [disabled]="isProcessing"
-      >
-        Log In
-      </button>
-    </div>
-  </div>
-</div> -->

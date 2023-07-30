@@ -35,7 +35,9 @@ interface states {
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
-  email = 'unitesly@gmail.com';
+  userEmail = this.authService.getUserEmail();
+  first_name = this.authService.getUserFullName();
+
   expanded: boolean = false;
   expandState: states[] = [];
   public opened: boolean = true;
@@ -103,6 +105,7 @@ export class SidebarComponent implements OnInit {
     this.mediaWatcher.unsubscribe();
   }
   logout() {
-    this.router.navigateByUrl('/login');
+    sessionStorage.setItem('isLoggedIn', 'false');
+    window.location.reload();
   }
 }

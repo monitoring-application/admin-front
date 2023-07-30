@@ -16,84 +16,62 @@
 
     <div class="flex justify-end">
       <div class="flex gap-2 m-2">
-        <button
-          mat-fab
-          color="primary"
-          (click)="refresh()"
-          matTooltip="Refresh"
-        >
+        <button mat-fab color="primary" (click)="refresh()">
           <mat-icon>refresh</mat-icon>
         </button>
         <button mat-fab color="primary" (click)="approve(1)">
           <mat-icon>check</mat-icon>
         </button>
-        <button mat-fab color="primary" (click)="approve(2)">
+        <!-- <button mat-fab color="primary" (click)="approve(2)">
           <mat-icon>close</mat-icon>
         </button>
         <button mat-fab color="primary" (click)="approve(3)">
           <mat-icon>delete_outline</mat-icon>
-        </button>
+        </button> -->
       </div>
     </div>
   </div>
   <mat-card>
-    <!-- <div class="loading-shade" *ngIf="isLoading">
-      <mat-spinner *ngIf="isLoading" color="primary"></mat-spinner>
-    </div> -->
-    <!-- <div style="height: 4px">
-      <mat-progress-bar
-        *ngIf="isLoading"
-        mode="indeterminate"
-      ></mat-progress-bar>
-    </div> -->
     <mat-card-content>
+      <mat-card-subtitle>Payout Request History</mat-card-subtitle>
       <table mat-table matSort [dataSource]="dataSource" class="w-full">
-        <ng-container matColumnDef="membersCode">
-          <th mat-header-cell *matHeaderCellDef>Members Code</th>
+        <ng-container matColumnDef="method">
+          <th mat-header-cell *matHeaderCellDef>Method</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.member_code }}
+            {{ "GCash" }}
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="fullName">
-          <th mat-header-cell *matHeaderCellDef>Full Name</th>
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef>Amount</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.full_name }}
+            {{ element.amount | currency : "PHP" : "symbol" }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="member_name">
+          <th mat-header-cell *matHeaderCellDef>Requestor Name</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.member_name }}
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="email">
-          <th mat-header-cell *matHeaderCellDef>Email Address</th>
+        <ng-container matColumnDef="dateRequested">
+          <th mat-header-cell *matHeaderCellDef>Date Requested</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.email }}
+            {{ element.created_at | date : "short" }}
           </td>
         </ng-container>
-
-        <ng-container matColumnDef="contactNo">
-          <th mat-header-cell *matHeaderCellDef>Contact No</th>
+        <ng-container matColumnDef="datePaid">
+          <th mat-header-cell *matHeaderCellDef>Date Paid</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.mobile_number }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="referalCode">
-          <th mat-header-cell *matHeaderCellDef>Upline</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.referal_code }}
+            {{ element.paid_at | date : "short" }}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="status">
           <th mat-header-cell *matHeaderCellDef>Status</th>
           <td mat-cell *matCellDef="let element">
-            {{ convertStatus(element.status) }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="downline">
-          <th mat-header-cell *matHeaderCellDef>Downline</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.ttlDownline }}
+            {{ element.status == 0 ? "Pending" : "Approve" }}
           </td>
         </ng-container>
 

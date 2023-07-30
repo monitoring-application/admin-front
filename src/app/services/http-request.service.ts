@@ -26,21 +26,21 @@ export class HttpRequestService {
   delete<T>(url: string) {
     return this.http.delete<T>(this.baseUrl + url);
   }
-  isUserAvailable(username: string, password: string): Observable<any> {
-    var url: string = routes.baseUrl + routes.responder;
-    url = url + '/login';
-    var body = {
-      email: username,
-      password: password,
-    };
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-    };
+  // isUserAvailable(params: any): Observable<any> {
+  //   var url: string = routes.baseUrl + routes.responder;
+  //   url = url + '/login';
+  //   var body = {
+  //     email: username,
+  //     password: password,
+  //   };
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type': 'application/json',
+  //     }),
+  //   };
 
-    return this.http.post(url, body, httpOptions);
-  }
+  //   return this.http.post(url, body, httpOptions);
+  // }
 
   // registerResponder(userInfo: UserInfo): Observable<any> {
   //   var url: string = routes.baseUrl + routes.responder;

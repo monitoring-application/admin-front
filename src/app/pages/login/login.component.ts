@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
 import { ContactUsService } from 'src/app/services/contact-us.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { NotificationType } from 'src/app/util/notification_type';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
   mediaSub: Subscription | undefined;
   public isMobile: boolean = false;
   loading = false;
+  formLogin: FormGroup = <FormGroup>{};
 
   hide: boolean = true;
   loginError: string = '';
@@ -27,12 +29,15 @@ export class LoginComponent implements OnInit {
 
   constructor(
     public router: Router,
+    fBuilder: FormBuilder,
     private location: Location,
     private authService: AuthService,
     public mediaObserver: MediaObserver,
     private contactService: ContactUsService,
     private notificationService: NotificationService
-  ) {}
+  ) {
+    this.onCreateForm(fBuilder);
+  }
 
   ngOnInit(): void {
     this.mediaSub = this.mediaObserver
@@ -46,32 +51,73 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  onCreateForm(builder: FormBuilder) {
+    this.formLogin = builder.group({
+      username: builder.control('', { validators: [Validators.required] }),
+      password: builder.control('', { validators: [Validators.required] }),
+    });
+  }
   async login() {
-    if (this.username != '' && this.password != '') {
-      if (this.isProcessing) return;
-      this.hide = true;
-      this.isProcessing = true;
-      setTimeout(() => {
-        this.authService
-          .userLogin(this.username, this.password)
-          .then((res) => {
-            this.router.navigate(['']);
-            this.isProcessing = false;
-          })
-          .catch((err) => {
-            var str = err.error.message || '';
-            this.loginError = str[0].toUpperCase() + str.slice(1); //"Invalid Credentials";
-            this.isProcessing = false;
-          });
-      }, 3000);
-    } else {
-      this.loginError = 'Invalid Credentials';
-      this.isProcessing = false;
+    const _payload = {
+      username: this.formLogin.controls['username'].value,
+      password: this.formLogin.controls['password'].value,
+    };
+
+    this.formLogin.markAllAsTouched();
+
+    if (!this.formLogin.valid) {
+      this.notificationService.showNotification(
+        NotificationType.warning,
+        'Please supply needed!',
+        'Warning'
+      );
+      return;
     }
+
+    setTimeout(() => {
+      this.authService.onLogin(_payload).subscribe({
+        next: (x) => {
+          if (!this.validationLogin(x)) return;
+          this.router.navigate(['']);
+        },
+        error: (e) => {
+          // console.log({ e: e });
+        },
+        complete: () => {
+          console.log('completed');
+        },
+      });
+    }, 1000);
   }
 
   back() {
     this.location.back();
+  }
+
+  validationLogin(data: any): boolean {
+    if (data.data.userStats == 1) {
+      this.notificationService.showNotification(
+        NotificationType.warning,
+        'User not found',
+        'Warning'
+      );
+      return false;
+    } else if (data.data.userStats == 2) {
+      this.notificationService.showNotification(
+        NotificationType.warning,
+        'User is inactive',
+        'Warning'
+      );
+      return false;
+    } else if (data.data.userStats == 3) {
+      this.notificationService.showNotification(
+        NotificationType.warning,
+        'Invalid passwrod',
+        'Warning'
+      );
+      return false;
+    }
+    return true;
   }
 
   validation(): boolean {

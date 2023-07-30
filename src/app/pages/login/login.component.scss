@@ -6,12 +6,12 @@
 }
 img.rose-lin {
   width: 50%;
+  margin-left: 40%;
+}
+img.rose-lin-mobile {
+  width: 50%;
   margin-left: 25%;
 }
-
-// img {
-//   width: 100%;
-// }
 .login-panel {
   padding-left: 85px;
   padding-right: 135px;
@@ -48,33 +48,7 @@ mat-label {
   margin-bottom: 10px;
   text-align: end;
 }
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-  color: gray;
-}
-::ng-deep .mat-form-field-infix {
-  padding-top: unset !important;
-}
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
-  padding: 10px !important;
-  height: 55px;
-}
-::ng-deep .mat-form-field-wrapper {
-  padding-bottom: 5px !important;
-}
-::ng-deep .mat-form-field-outline-start {
-  border-radius: 15px 0 0 15px !important;
-  min-width: 15px !important;
-}
-::ng-deep .mat-form-field-outline-end {
-  border-radius: 0 15px 15px 0 !important;
-}
-::ng-deep .mat-checkbox-inner-container {
-  width: 25px !important;
-  height: 25px !important;
-}
-::ng-deep .mat-checkbox-label {
-  font-size: 16px;
-}
+
 .buttonLogin {
   background-color: transparent;
   color: black;
