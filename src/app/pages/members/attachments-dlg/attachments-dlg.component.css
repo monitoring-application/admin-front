@@ -1,0 +1,14 @@
+.example-card {
+    max-width: 400px;
+}
+.attachments{
+    width: 40%;
+}
+
+.user-panel-avatar{
+   
+    width:  100%;
+    height: 300px;
+    object-fit: cover;
+    border: 8px;
+  }

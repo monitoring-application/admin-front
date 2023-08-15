@@ -18,6 +18,7 @@ import { FooterComponent } from './component/footer/footer.component';
 import { HeaderComponent } from './component/header/header.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { MembersLoginComponent } from './pages/members/members-login/members-login.component';
+import { AttachmentsDlgComponent } from './pages/members/attachments-dlg/attachments-dlg.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MembersLoginComponent } from './pages/members/members-login/members-log
     HeaderComponent,
     SignUpComponent,
     MembersLoginComponent,
+    AttachmentsDlgComponent,
   ],
   imports: [
     ToastrModule.forRoot({

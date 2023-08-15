@@ -1,0 +1,75 @@
+<div class="flex">
+  <div class="flex-1">
+    <h2 mat-dialog-title class="text-green-600">View Attachments</h2>
+  </div>
+  <div class="flex-none ...">
+    <button mat-icon-button matTooltip="Close" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+<div class="mb-3">
+  <mat-divider></mat-divider>
+</div>
+<div class="mt-5 w-full" *ngIf="havRecord == 0">
+  <span> No record found...</span>
+</div>
+<div class="mt-5 grid grid-cols-3 gap-4 w-full">
+  <mat-card class="example-card mb-5" *ngFor="let attachment of attachments">
+    <mat-card-header>
+      <img mat-card-avatar src="{{ attachment.avatar }}" />
+
+      <mat-card-title>{{ attachment.page_name }}</mat-card-title>
+      <mat-card-subtitle>{{ attachment.social_media }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <a href="{{ attachment.path }}" target="_blank">
+        <img class="user-panel-avatar" src="{{ attachment.path }}" />
+      </a>
+    </mat-card-content>
+    <mat-card-actions>
+      <div>
+        <button
+          mat-raised-button
+          class="fonts bg-green-900 text-white"
+          *ngIf="attachment.status == 1"
+        >
+          APPROVED
+        </button>
+        <button
+          mat-raised-button
+          class="fonts bg-red-900 text-white"
+          *ngIf="attachment.status == 2"
+        >
+          DISSAPROVED
+        </button>
+        <button
+          mat-raised-button
+          class="fonts bg-green-900 text-white"
+          (click)="approve(attachment.id, 1)"
+          *ngIf="attachment.status == 0"
+        >
+          APPROVE
+        </button>
+        <button
+          mat-raised-button
+          class="fonts bg-red-900 text-white"
+          (click)="approve(attachment.id, 2)"
+          *ngIf="attachment.status == 0"
+        >
+          DISSAPROVE
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<div class="flex justify-end">
+  <button
+    mat-raised-button
+    class="fonts bg-green-900 text-white w-36"
+    (click)="verify()"
+    *ngIf="member.status != 4 && havRecord != 0"
+  >
+    VERIFY
+  </button>
+</div>

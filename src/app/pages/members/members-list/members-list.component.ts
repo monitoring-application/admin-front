@@ -17,6 +17,8 @@ import { SignUpService } from 'src/app/services/sign-up.service';
 import { ISignUpModel } from 'src/app/shared/model/interface/i-sign-up-model';
 import { NotificationType } from 'src/app/util/notification_type';
 import { requestRoutes } from 'src/app/util/request_routes';
+import { AttachmentsDlgComponent } from '../attachments-dlg/attachments-dlg.component';
+import { FileManagerService } from 'src/app/services/file-manager.service';
 const columns = [
   'membersCode',
   'fullName',
@@ -52,6 +54,7 @@ export class MembersListComponent implements OnInit {
     private dialog: MatDialog,
     private httpClient: HttpClient,
     private signUpService: SignUpService,
+    private fileManagerService: FileManagerService,
     private notificationService: NotificationService
   ) {}
 
@@ -145,7 +148,30 @@ export class MembersListComponent implements OnInit {
     this.selectedItem = item;
     this.isApproved = item.status;
   }
+  viewAttachments() {
+    if (!this.selectedItem) {
+      this.notificationService.showNotification(
+        NotificationType.warning,
+        'Please selecte a member to view!',
+        'Warning'
+      );
+      return;
+    }
 
+    this.fileManagerService.member = this.selectedItem;
+
+    const dialogRef = this.dialog.open(AttachmentsDlgComponent, {
+      hasBackdrop: true,
+      width: '60vw',
+      maxHeight: '90vh',
+      disableClose: true,
+      autoFocus: false,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      setTimeout(() => {}, 1000);
+    });
+  }
   remove() {
     this.signUpService.remove(this.selectedItem.id)?.subscribe({
       next: (res) => {},
@@ -205,6 +231,8 @@ export class MembersListComponent implements OnInit {
       return 'Disapprove';
     } else if (status === 3) {
       return 'In Active';
+    } else if (status === 4) {
+      return 'Verified';
     }
     return 'Undefined';
   }

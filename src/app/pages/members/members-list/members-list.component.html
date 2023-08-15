@@ -24,6 +24,14 @@
         >
           <mat-icon>refresh</mat-icon>
         </button>
+        <button
+          mat-fab
+          color="primary"
+          matTooltip="View Attachments"
+          (click)="viewAttachments()"
+        >
+          <mat-icon>remove_red_eye</mat-icon>
+        </button>
         <button mat-fab color="primary" (click)="approve(1)">
           <mat-icon>check</mat-icon>
         </button>
@@ -37,15 +45,6 @@
     </div>
   </div>
   <mat-card>
-    <!-- <div class="loading-shade" *ngIf="isLoading">
-      <mat-spinner *ngIf="isLoading" color="primary"></mat-spinner>
-    </div> -->
-    <!-- <div style="height: 4px">
-      <mat-progress-bar
-        *ngIf="isLoading"
-        mode="indeterminate"
-      ></mat-progress-bar>
-    </div> -->
     <mat-card-content>
       <table mat-table matSort [dataSource]="dataSource" class="w-full">
         <ng-container matColumnDef="membersCode">
@@ -79,7 +78,7 @@
         <ng-container matColumnDef="referalCode">
           <th mat-header-cell *matHeaderCellDef>Upline</th>
           <td mat-cell *matCellDef="let element">
-            {{ element.referal_code }}
+            {{ element.upline }}
           </td>
         </ng-container>
 
